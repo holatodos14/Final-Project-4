@@ -1,11 +1,18 @@
-import express from 'express'
-import swaggerUi from 'swagger-ui-express'
-import swaggerDocument from './swagger-output.json'
+import swaggerAutogen from 'swagger-autogen'
 
-const app = express()
-
-export function swaggerSetup () {
-  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument))
+const doc = {
+  info: {
+    title: 'My API',
+    description: 'Description'
+  },
+  host: 'localhost:3000'
 }
 
-export default app
+const outputFile = './src/utils/swagger-output.json'
+const routes = ['./src/routes/userRoutes.routes.js',
+  './src/routes/postRoutes.routes.js',
+  './src/routes/categoryRoutes.routes.js',
+  './src/routes/commentRoutes.routes.js'
+]
+
+swaggerAutogen()(outputFile, routes, doc)

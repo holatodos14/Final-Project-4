@@ -1,7 +1,6 @@
 /* eslint-disable camelcase */
 import { pool } from '../config/db.js'
 
-// Create a new category
 export async function createCategory (req, res) {
   try {
     const { category_name } = req.body
@@ -13,7 +12,6 @@ export async function createCategory (req, res) {
   }
 }
 
-// Get all categories
 export async function getAllCategories (req, res) {
   try {
     const [categories] = await pool.query('SELECT * FROM Categories')
@@ -24,7 +22,6 @@ export async function getAllCategories (req, res) {
   }
 }
 
-// Update a category
 export async function updateCategory (req, res) {
   try {
     const categoryId = req.params.categoryId
